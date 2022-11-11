@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link
+    rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+    <title>Uji Kelayakan Air</title>
+</head>
+<body>
+    
+    <div class="container contact-form">
+        <div class="contact-image">
+            <img src="{{ url_for('static', filename='water.png') }}" alt="water"/>
+        </div>
+        <form method="POST" action="{{ url_for('predict') }}">
+            <h1>Uji Klasfikasi Kelayakan Air untuk Konsumsi</h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>
+                        Input Kandungan Air
+                    </h3>
+                    <!-- form for ph	Hardness	Solids	Chloramines	Sulfate	Conductivity	Organic_carbon	Trihalomethanes	Turbidity -->
+                    <div class="form-group">
+                        <label for="Ph">Ph (0-14)</label>
+                        <input type="text" name="Ph" class="form-control" placeholder="Ph ..." value="" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="Hardness">Hardness (mg/L)</label>                    
+                        <input type="text" name="Hardness" class="form-control" placeholder="Hardness ..." value="" required/>
+                    </div>
+                    <div class="form-group ">
+                        <label for="Solids">Solids (ppm)</label>
+                        <input type="text" name="Solids" class="form-control" placeholder="Solids ..." value="" required/>
+                    </div>
+                    <div class="form-group ">
+                        <label for="Chloramines">Chloramines (ppm)</label>
+                        <input type="text" name="Chloramines" class="form-control" placeholder="Chloramines ..." value="" required/>
+                    </div>
+                    <div class="form-group ">
+                        <label for="Sulfate">Sulfate (mg/L)</label>
+                        <input type="text" name="Sulfate" class="form-control" placeholder="Sulfate ..." value="" required/>
+                    </div>
+                    <div class="form-group ">
+                        <label for="Conductivity">Conductivity (μS/cm)</label>
+                        <input type="text" name="Conductivity" class="form-control" placeholder="Conductivity ..." value="" required/>
+                    </div>
+                    <div class="form-group ">
+                        <label for="Organic_carbon">Organic_carbon (ppm)</label>
+                        <input type="text" name="Organic_carbon" class="form-control" placeholder="Organic_carbon ..." value="" required/>
+                    </div>
+                    <div class="form-group ">
+                        <label for="Trihalomethanes">Trihalomethanes (μS/cm)</label>
+                        <input type="text" name="Trihalomethanes" class="form-control" placeholder="Trihalomethanes ..." value="" required/>
+                    </div>
+                    <div class="form-group ">
+                        <label for="Turbidity">Turbidity (NTU)</label>
+                        <input type="text" name="Turbidity" class="form-control" placeholder="Turbidity ..." value="" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-outline-danger">Prediksi</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h3>
+                        Hasil Prediksi
+                    </h3>
+                    <br>
+                    <br>
+                    <div class="container">
+                        
+                        <h7 style="text-align: justify;">
+                            Berdasarkann Input Kandungan, Maka Air tersebut
+                            <br>
+                            <br>
+                        </h7>
+
+                        <h5 style="text-align: center;">
+                            Dikategorikan Sebagai
+                        </h5> 
+                        <h4 style="text-align: center;">
+                           <b><u>{{ prediction_text }}</u></b> 
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
